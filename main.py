@@ -30,7 +30,7 @@ for artical_tag in artical_tags:
     artickle_link = a_tag['href']
     artickle_link = f'https://habr.com{artickle_link}'
     articla_time = time_tag["datetime"]
-    artical_header = a_tag.text
+    artical_header = a_tag.text.strip().lower()
 
     artical_page_response = requests.get(artickle_link, headers=generate_headers())
 
@@ -44,7 +44,7 @@ for artical_tag in artical_tags:
         'articla_time': articla_time,
         'artical_body': artical_body_tag
     }
-    preview_text = artical_header.lower()
+    # preview_text = artical_header.lower()
     # print(artical_parsed)
     for keys, value in artical_parsed.items():
         for key in KEYWORDS:
